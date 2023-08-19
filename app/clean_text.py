@@ -1,24 +1,8 @@
 import re
 
-def clean_text(text):
-    """
-    Remove unwanted characters
-    """
-    text = re.sub(r"\+", " " ,text)
-    text = re.sub(r"\n", " ", text)
-    text = re.sub(r"\r", " ", text)
-    text = re.sub(r"\t", " ", text)
-    text = re.sub(r"\xa0", " ", text)
-    text = re.sub(r":", " ", text)
-    text = re.sub(r";", " ", text)
-    text = re.sub(r"/", " ", text)
-    text = re.sub(r"!", " ", text)
-    text = re.sub(r"\?", " ", text)
-    text = re.sub(r"؟", " ", text)
-    text = re.sub(r"\|", " ", text)
-    text = re.sub(r"»", " ", text)
-    text = re.sub(r"«", " ", text)
-    text = re.sub(r"\"", " ", text)
-    text = re.sub(r'[-+]?[0-9]+', " ", text)
 
+def clean_text(text):
+    chars_to_remove = ["\+", "\n", "\r", "\t", "\xa0", ":", ";", "/", "!", "\?", "؟", "\|", "»", "«", "\"", '[-+]?[0-9]+']
+    for char in chars_to_remove:
+        text = re.sub(char, " ", text)
     return text

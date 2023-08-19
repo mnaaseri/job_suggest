@@ -24,14 +24,17 @@ class Suggester:
         self.classifier = pipeline("zero-shot-classification", 
                             model=model_path, from_pt=True)   
     def predict(self, input_text: str):
-        result = self.classifier(clean_text(input_text), candidate_labels, multi_label=True)
+        try: 
+            result = self.classifier(clean_text(input_text), candidate_labels, multi_label=True)
 
-        job_suggestion = result['labels'][0]
-        confidence = result['scores'][0]
-        print(job_suggestion)
+            job_suggestion = result['labels'][0]
+            confidence = result['scores'][0]
+            print(job_suggestion)
 
-        return {
-            "job_suggestion": job_suggestion,
-            "confidence": confidence,
-        }
-            
+            return {
+                "job_suggestion": job_suggestion,
+                "confidence": confidence,
+            }
+        except Exception as e:
+            print(f"Error: {e}")
+            return None
