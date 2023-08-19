@@ -1,9 +1,10 @@
 import os
+
+import docx
+from docx2txt import process
 from PyPDF2 import PdfReader
-import docx 
 
 
-#TO DO: it's not a suggested way to handle different file extensions and should be changed
 def read_cv(file_path):
     """
     Handle PDF and doc files.
@@ -18,9 +19,10 @@ def read_cv(file_path):
             page = reader.pages[i]
             page_text = page.extract_text()
             text.append(page_text)
-            doc = "".join(text)
-    elif file_extension == '.docs':
-        doc = docx.Document(file_path)
+            doc = "".join(text)  
+            
+    elif file_extension in ['.docx', '.doc']:
+        doc = process(file_path)
     else:
         raise ValueError("Please Enter a Valid  PDF or docs")
     
