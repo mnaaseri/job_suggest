@@ -1,0 +1,11 @@
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.13.1+cpu
+transformers
+tensorflow
+pydantic
+fastapi
+uvicorn
+python-multipart
+PyPDF2
+python-docx
+
